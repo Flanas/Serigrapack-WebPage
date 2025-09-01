@@ -3,7 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import CartIcon from "./icons/CartIcon";
 import { asset } from "../utils/asset";
 
-export default function Header({ cartCount, cartDirty, clearDirty, navOpen, setNavOpen }) {
+export default function Header({
+  cartCount,
+  cartDirty,
+  clearDirty,
+  navOpen,
+  setNavOpen,
+}) {
   const navigate = useNavigate();
   const location = useLocation();
   const onCatalog = location.pathname.startsWith("/catalog");
@@ -12,7 +18,6 @@ export default function Header({ cartCount, cartDirty, clearDirty, navOpen, setN
     if (onCatalog) {
       setNavOpen?.((v) => !v);
     } else {
-      // Go to catalog and open the mobile menu
       navigate("/catalog");
       setNavOpen?.(true);
     }
@@ -20,41 +25,47 @@ export default function Header({ cartCount, cartDirty, clearDirty, navOpen, setN
 
   const burgerOpen = Boolean(navOpen && onCatalog);
 
+  const linkBase =
+    "px-2 py-1 rounded-md transition-colors text-xs md:text-sm tracking-wide";
+  const inactive = "text-white/90 hover:text-white hover:bg-white/10";
+  const active = "text-white bg-white/20";
+
   return (
-    <header className="sticky top-0 z-20" style={{ backgroundColor: "#101820" }}>
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between text-white">
-        {/* Logo */}
+    <header className="sticky top-0 z-20 bg-brandBrown">
+      <div className="max-w-6xl mx-auto px-6 py-3 md:py-4 flex items-center justify-between text-white">
+        {/* Logo / brand */}
         <Link to="/" className="flex items-center gap-3">
           <img
             src={asset("/images/logo/serigrapack-logo.jpg")}
             alt="Serigrapack"
-            className="h-12 md:h-16 w-auto"
+            className="h-10 md:h-12 w-auto"
             onError={(e) => (e.currentTarget.style.display = "none")}
           />
-          <h1 className="font-title text-lg md:text-2xl font-bold">Serigrapack</h1>
+          <h1 className="font-title text-base md:text-xl font-semibold">
+            Serigrapack
+          </h1>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden sm:flex items-center gap-6">
+        {/* Desktop nav (sm and up) */}
+        <nav className="hidden sm:flex items-center gap-3">
           <Link
             to="/"
-            className={
-              "text-sm " +
-              (location.pathname === "/" ? "font-semibold" : "opacity-80 hover:opacity-100")
-            }
+            className={`${linkBase} ${
+              location.pathname === "/" ? active : inactive
+            }`}
           >
             Inicio
           </Link>
           <Link
             to="/catalog"
-            className={"text-sm " + (onCatalog ? "font-semibold" : "opacity-80 hover:opacity-100")}
+            className={`${linkBase} ${onCatalog ? active : inactive}`}
           >
             Catálogo
           </Link>
         </nav>
 
         {/* Right actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Burger (mobile only) */}
           <button
             type="button"
@@ -62,9 +73,8 @@ export default function Header({ cartCount, cartDirty, clearDirty, navOpen, setN
             aria-label={burgerOpen ? "Cerrar menú" : "Abrir menú"}
             aria-controls="mobile-nav"
             aria-expanded={burgerOpen}
-            className="sm:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-white/20"
+            className="sm:hidden inline-flex items-center gap-2 h-10 px-3 rounded-lg border border-white/25 bg-white/5 hover:bg-white/10"
           >
-            <span className="sr-only">Menú</span>
             <span className="relative block h-5 w-6">
               <span
                 className={
@@ -85,6 +95,7 @@ export default function Header({ cartCount, cartDirty, clearDirty, navOpen, setN
                 }
               />
             </span>
+            <span className="text-xs font-medium">Menú</span>
           </button>
 
           {/* Cart */}
@@ -93,11 +104,11 @@ export default function Header({ cartCount, cartDirty, clearDirty, navOpen, setN
               clearDirty();
               navigate("/cart");
             }}
-            className="relative inline-flex items-center gap-2 rounded-lg border border-white/20 px-3 py-2"
+            className="relative inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/5 hover:bg-white/10 px-3 py-2"
             aria-label="Abrir carrito"
           >
             <CartIcon className="h-5 w-5" />
-            <span className="text-sm">Carrito: {cartCount}</span>
+            <span className="text-xs md:text-sm">Carrito: {cartCount}</span>
             {cartDirty && (
               <span className="absolute -top-1 -right-1 inline-block h-2.5 w-2.5 rounded-full bg-red-500" />
             )}

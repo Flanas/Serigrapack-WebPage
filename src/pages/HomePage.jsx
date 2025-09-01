@@ -94,12 +94,15 @@ export default function HomePage() {
     "Hola Serigrapack, me gustaría más información."
   )}`;
 
-  // Put your chosen images in: public/images/home-carousel/
+  // Images for the hero carousel (place files in public/images/home-carousel/)
   const slides = [
     { src: "/images/home-carousel/slide-1.jpeg", alt: "Bolsas personalizadas Serigrapack" },
     { src: "/images/home-carousel/slide-2.jpeg", alt: "Cajas y empaques para e-commerce" },
     { src: "/images/home-carousel/slide-3.jpeg", alt: "Textiles y tote bags en producción" },
   ];
+
+  // PDF path (place file at public/docs/catalogo-serigrapack.pdf)
+  const pdfUrl = asset("/docs/catalogo-serigrapack.pdf");
 
   return (
     <main>
@@ -115,21 +118,37 @@ export default function HomePage() {
               más, con enfoque en calidad, rapidez y asesoría cercana.
             </p>
 
+            {/* Buttons: Ver Productos + Descargar catálogo (PDF) */}
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 to="/catalog"
                 className="rounded-xl bg-brandGreen text-white px-5 py-3 hover:opacity-90"
               >
-                Ver Catálogo
+                Ver Productos
               </Link>
+
               <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-brandText text-white px-5 py-3 hover:opacity-90"
+                href={pdfUrl}
+                download
+                className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-white hover:opacity-90"
+                style={{ backgroundColor: "#000000" }} // Adobe Acrobat red
+                aria-label="Descargar catálogo en PDF"
               >
-                <WhatsAppIcon className="h-5 w-5" />
-                WhatsApp
+                {/* Simple PDF glyph */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                  <path d="M14 2v6h6" />
+                  <path d="M8 14h8" />
+                  <path d="M8 18h5" />
+                </svg>
+                Descargar Catálogo (PDF)
               </a>
             </div>
           </div>
@@ -160,22 +179,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Press / Media Section */}
+      {/* Press / Media Section (centered) */}
       <section className="bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-10">
+        <div className="max-w-6xl mx-auto px-6 py-10 text-center">
           <h3 className="font-title text-2xl font-bold mb-4">En los medios</h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid place-items-center">
             <a
               href="https://www.forbes.com.ec/movimiento-inspirador/quebraron-ahora-manejan-dos-empresas-n74102"
               target="_blank"
               rel="noopener noreferrer"
-              className="group block rounded-2xl border border-black/10 bg-white p-5 shadow hover:shadow-lg hover:border-black/20 transition"
+              className="group block max-w-2xl rounded-2xl border border-black/10 bg-white p-5 shadow hover:shadow-lg hover:border-black/20 transition"
             >
-              <div className="flex items-start gap-4">
+              <div className="flex flex-col items-center gap-4">
                 <div className="h-12 w-12 rounded-lg bg-black text-white grid place-items-center font-semibold">
                   F
                 </div>
-                <div>
+                <div className="text-center">
                   <h4 className="font-semibold text-lg group-hover:underline">
                     Forbes Ecuador: “Quebraron y ahora manejan dos empresas”
                   </h4>
@@ -190,16 +209,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact / Social Section */}
+      {/* Contact / Social Section (centered) */}
       <section className="bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-10">
+        <div className="max-w-6xl mx-auto px-6 py-10 text-center">
           <h3 className="font-title text-2xl font-bold mb-4">Contáctanos</h3>
-        <p className="opacity-80 mb-6">
+          <p className="opacity-80 mb-6">
             ¡Estamos listos para asesorarte! Escríbenos por WhatsApp o visita
             nuestras redes.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 justify-center">
             <a
               href={waLink}
               target="_blank"

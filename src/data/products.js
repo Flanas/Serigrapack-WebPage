@@ -22,7 +22,7 @@ export const PRODUCTS = [
     description:
       "Full color. Mínimo 100 unidades. Áreas de impresión: 20×10, 25×25 o toda la funda."
   },
-  { id: "p10", category: "cambrela-con", name: "Arruchada | Cambrela 1 Cinta", image: "/images/products/Arruchada-Cambrela-1cint.jpg" },
+  { id: "p10", category: "cambrela-con", name: "Arruchada | Cambrela 1 Cinta", image: "/images/products/arruchada-cambrela-1cint.jpg" },
   { id: "p11", category: "cambrela-con", name: "Tote Recto (Asa) · 1 color", image: "/images/products/tote-recto-1color.jpg" },
   {
     id: "p24",
@@ -33,7 +33,7 @@ export const PRODUCTS = [
       "Full color. Mínimo 50 unidades. Áreas de impresión: 20×10, 25×25 o toda el bolso."
   },
   { id: "p25", category: "cambrela-con", name: "Bolso Recto Pliegues Esquineros Full Color", image: "/images/products/bolso-recto-fullcolor.jpg" },
-  { id: "p26", category: "cambrela-con", name: "Tote Recto | Cambrela Asa + Base", image: "/images/products/tote-recto-AsaBase.jpg" },
+  { id: "p26", category: "cambrela-con", name: "Tote Recto | Cambrela Asa + Base", image: "/images/products/tote-recto-asabase.jpg" },
   { id: "p12", category: "cambrela-con", name: "Sport Bag | Cambrela con Cordon", image: "/images/products/sportbag-1color.jpg" },
   {
     id: "p27",
@@ -47,7 +47,7 @@ export const PRODUCTS = [
     id: "p29",
     category: "cambrela-con",
     name: "Cartuchera | Cambrela con Cierre · Full Color",
-    image: "/images/products/cartuchera-camb-Full Color.jpg",
+    image: "/images/products/cartuchera-camb-full-color.jpg",
     description:
       "Full color. Mínimo 50 unidades. Áreas: 20×10, 15×15 o toda el bolso."
   },
@@ -55,20 +55,20 @@ export const PRODUCTS = [
   { id: "p31", category: "cambrela-con", name: "Portaterno | Cambrela con Cierre + Base", image: "/images/products/portaterno-camb-cierrebase.jpg" },
 
   // ===== TELA =====
-  { id: "p33", category: "tela", name: "Tote Bag Recto Liencillo Asa", image: "/images/products/tote-liencilloAsa.jpg" },
-  { id: "p13", category: "tela", name: "Tote Liencillo Recto | Gabardina Pesada", image: "/images/products/tote-GabardinaPes.jpg" },
+  { id: "p33", category: "tela", name: "Tote Bag Recto Liencillo Asa", image: "/images/products/tote-liencilloasa.jpg" },
+  { id: "p13", category: "tela", name: "Tote Liencillo Recto | Gabardina Pesada", image: "/images/products/tote-gabardinapes.jpg" },
   { id: "p14", category: "tela", name: "Arruchada Liencillo · Doble Cordón", image: "/images/products/arruchada-liencillo.jpg" },
-  { id: "p15", category: "tela", name: "Tote Bag Recto Liencillo Asa Logo", image: "/images/products/ToteLiencillologo.jpg" },
-  { id: "p34", category: "tela", name: "Tote Bag Recto Liencillo Asa Logo · Full Color", image: "/images/products/ToteLiencillologoFullColor.jpg" },
-  { id: "p35", category: "tela", name: "Tote Bag Recto Aruba · Full Color", image: "/images/products/ToteLiencillologoArubaFullColor.jpg" },
-  { id: "p36", category: "tela", name: "Sport Bag | Liencillo con Cordón · Full Color", image: "/images/products/SportbadLiencillocordon.jpg" },
-  { id: "p37", category: "tela", name: "Tote Liencillo Recto | Gabardina Pesada · Logo", image: "/images/products/tote-GabardinaPesLogo.jpg" },
-  { id: "p38", category: "tela", name: "Arruchada | Piel de Durazno | Una cinta", image: "/images/products/ArruchadaDuraznocinta.jpg" },
-  { id: "p39", category: "tela", name: "Arruchada | Piel de Durazno | Doble cinta", image: "/images/products/ArruchadaDuraznodoblecinta.jpg" },
-  { id: "p40", category: "tela", name: "Arruchada | Terciopelo | Una cinta", image: "/images/products/ArruchadaTerciopeloUnacinta.jpg" },
-  { id: "p41", category: "tela", name: "Arruchada | Terciopelo | Doble cinta", image: "/images/products/ArruchadaTerciopeloDoblecinta.jpg" },
-  { id: "p42", category: "tela", name: "Arruchada | Aruba | Una cinta", image: "/images/products/ArruchadaArubaUnacinta.jpg" },
-  { id: "p43", category: "tela", name: "Arruchada | Satín · Full Color", image: "/images/products/ArruchadaSatinFull.jpg" },
+  { id: "p15", category: "tela", name: "Tote Bag Recto Liencillo Asa Logo", image: "/images/products/toteliencillologo.jpg" },
+  { id: "p34", category: "tela", name: "Tote Bag Recto Liencillo Asa Logo · Full Color", image: "/images/products/toteliencillologofullcolor.jpg" },
+  { id: "p35", category: "tela", name: "Tote Bag Recto Aruba · Full Color", image: "/images/products/toteliencillologoarubafullcolor.jpg" },
+  { id: "p36", category: "tela", name: "Sport Bag | Liencillo con Cordón · Full Color", image: "/images/products/sportbadliencillocordon.jpg" },
+  { id: "p37", category: "tela", name: "Tote Liencillo Recto | Gabardina Pesada · Logo", image: "/images/products/tote-gabardinapeslogo.jpg" },
+  { id: "p38", category: "tela", name: "Arruchada | Piel de Durazno | Una cinta", image: "/images/products/arruchadaduraznocinta.jpg" },
+  { id: "p39", category: "tela", name: "Arruchada | Piel de Durazno | Doble cinta", image: "/images/products/arruchadaduraznodoblecinta.jpg" },
+  { id: "p40", category: "tela", name: "Arruchada | Terciopelo | Una cinta", image: "/images/products/arruchadaterciopelounacinta.jpg" },
+  { id: "p41", category: "tela", name: "Arruchada | Terciopelo | Doble cinta", image: "/images/products/arruchadaterciopelodoblecinta.jpg" },
+  { id: "p42", category: "tela", name: "Arruchada | Aruba | Una cinta", image: "/images/products/arruchadaarubaunacinta.jpg" },
+  { id: "p43", category: "tela", name: "Arruchada | Satín · Full Color", image: "/images/products/arruchadasatinfull.jpg" },
 
   {
     id: "p57",
@@ -198,14 +198,14 @@ export const PRODUCTS = [
     id: "p56",
     category: "cajas-cintas",
     name: "Listones · 1.5 cm (Rollo 45 m)",
-    image: "/images/products/Listones.jpg",
+    image: "/images/products/listones.jpg",
     description: "Rollo de 45 m · Grosor 1.5 cm. Paquetes: 5 / 10 / 20 rollos."
   },
   {
     id: "p59",
     category: "cajas-cintas",
     name: "Listones · 2.5 cm (Rollo 45 m)",
-    image: "/images/products/Listones.jpg",
+    image: "/images/products/listones.jpg",
     description: "Rollo de 45 m · Grosor 2.5 cm. Paquetes: 5 / 10 / 20 rollos."
   },
 
