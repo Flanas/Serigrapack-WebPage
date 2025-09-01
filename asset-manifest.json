@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Serigrapack-WebPage/static/css/main.29ea0b08.css",
+    "main.js": "/Serigrapack-WebPage/static/js/main.449b3a75.js",
+    "static/js/453.5044b972.chunk.js": "/Serigrapack-WebPage/static/js/453.5044b972.chunk.js",
+    "index.html": "/Serigrapack-WebPage/index.html",
+    "main.29ea0b08.css.map": "/Serigrapack-WebPage/static/css/main.29ea0b08.css.map",
+    "main.449b3a75.js.map": "/Serigrapack-WebPage/static/js/main.449b3a75.js.map",
+    "453.5044b972.chunk.js.map": "/Serigrapack-WebPage/static/js/453.5044b972.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.29ea0b08.css",
+    "static/js/main.449b3a75.js"
+  ]
+}
