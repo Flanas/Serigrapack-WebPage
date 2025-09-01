@@ -1,6 +1,7 @@
 // src/components/Header.jsx
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import CartIcon from "./icons/CartIcon";
+import { asset } from "../utils/asset";
 
 export default function Header({ cartCount, cartDirty, clearDirty, navOpen, setNavOpen }) {
   const navigate = useNavigate();
@@ -25,9 +26,10 @@ export default function Header({ cartCount, cartDirty, clearDirty, navOpen, setN
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
           <img
-            src="/images/logo/serigrapack-logo.jpg"
+            src={asset("/images/logo/serigrapack-logo.jpg")}
             alt="Serigrapack"
             className="h-12 md:h-16 w-auto"
+            onError={(e) => (e.currentTarget.style.display = "none")}
           />
           <h1 className="font-title text-lg md:text-2xl font-bold">Serigrapack</h1>
         </Link>
@@ -38,19 +40,14 @@ export default function Header({ cartCount, cartDirty, clearDirty, navOpen, setN
             to="/"
             className={
               "text-sm " +
-              (location.pathname === "/"
-                ? "font-semibold"
-                : "opacity-80 hover:opacity-100")
+              (location.pathname === "/" ? "font-semibold" : "opacity-80 hover:opacity-100")
             }
           >
             Inicio
           </Link>
           <Link
             to="/catalog"
-            className={
-              "text-sm " +
-              (onCatalog ? "font-semibold" : "opacity-80 hover:opacity-100")
-            }
+            className={"text-sm " + (onCatalog ? "font-semibold" : "opacity-80 hover:opacity-100")}
           >
             Catálogo
           </Link>

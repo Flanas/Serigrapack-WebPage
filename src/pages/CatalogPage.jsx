@@ -4,6 +4,7 @@ import { CATEGORIES } from "../data/categories";
 import { PRODUCTS } from "../data/products";
 import { toTitle } from "../utils/strings";
 import PriceSelector from "../components/PriceSelector";
+import { asset } from "../utils/asset";
 
 export default function CatalogPage({
   addToCart,
@@ -47,7 +48,7 @@ export default function CatalogPage({
         </ul>
       </nav>
 
-      {/* Mobile collapsible nav (optional) */}
+      {/* Mobile collapsible nav */}
       {navOpen && (
         <nav
           id="mobile-nav"
@@ -104,37 +105,39 @@ export default function CatalogPage({
 
                   <div className="w-full aspect-[4/3] bg-white border border-black/5 rounded-xl mb-4 grid place-items-center p-2">
                     <img
-                      src={product.image}
+                      src={asset(product.image)}
                       alt={product.name}
                       className="max-h-full max-w-full object-contain"
                       loading="lazy"
                     />
                   </div>
 
-                  <h2 className="font-title text-lg font-semibold mb-1">
+                  <h2 className="font-title text-lg font-semibold">
                     {product.name}
                   </h2>
-                  {/* Fallback de precio base del catálogo */}
-                  <p className="text-brandBrown font-bold">{product.price}</p>
+
+                  {/* Optional description (since price now lives in PriceSelector) */}
+                  {product.description ? (
+                    <p className="text-sm text-brandText/70 mt-1">
+                      {product.description}
+                    </p>
+                  ) : null}
 
                   <div className="mt-auto">
                     <PriceSelector
                       productId={product.id}
                       addToCartLabel="Agregar con esta opción"
                       onSelect={(sel) => {
-                        // Construimos un line item compatible con el carrito,
-                        // conservando el id original para que el loading por producto funcione.
+                        // Build a line item for the cart; keep original id for loading state
                         const lineItem = {
                           ...product,
-                          // Nombre enriquecido con la opción elegida
                           name: `${product.name} — ${sel.label}`,
-                          // Precio mostrado (unitario/paquete) formateado
+                          // Keep a human price string if available (cart also keeps numeric totals)
                           price:
                             sel?.price != null
                               ? `$${Number(sel.price).toFixed(2)}`
-                              : product.price,
-                          // Guardamos la selección completa por si la usas en el CartPage
-                          selection: sel,
+                              : undefined,
+                          selection: sel, // keep full selection for CartPage
                         };
                         addToCart(lineItem);
                       }}

@@ -5,6 +5,7 @@ import { WHATSAPP_NUMBER } from "../data/config";
 import WhatsAppIcon from "../components/icons/WhatsAppIcon";
 import InstagramIcon from "../components/icons/InstagramIcon";
 import MapPinIcon from "../components/icons/MapPinIcon";
+import { asset } from "../utils/asset";
 
 /* ---------- Simple fade Carousel ---------- */
 function Carousel({ slides, interval = 5000, className = "" }) {
@@ -36,13 +37,14 @@ function Carousel({ slides, interval = 5000, className = "" }) {
         {slides.map((s, i) => (
           <img
             key={s.src + i}
-            src={s.src}
+            src={asset(s.src)}
             alt={s.alt || ""}
             className={
               "absolute inset-0 w-full h-full object-cover transition-opacity duration-700 " +
               (i === index ? "opacity-100" : "opacity-0")
             }
             loading="lazy"
+            onError={(e) => (e.currentTarget.style.display = "none")}
           />
         ))}
       </div>
@@ -92,7 +94,7 @@ export default function HomePage() {
     "Hola Serigrapack, me gustaría más información."
   )}`;
 
-  // Replace these with your chosen filenames inside /public/images/home-carousel/
+  // Put your chosen images in: public/images/home-carousel/
   const slides = [
     { src: "/images/home-carousel/slide-1.jpeg", alt: "Bolsas personalizadas Serigrapack" },
     { src: "/images/home-carousel/slide-2.jpeg", alt: "Cajas y empaques para e-commerce" },
@@ -192,7 +194,7 @@ export default function HomePage() {
       <section className="bg-white">
         <div className="max-w-6xl mx-auto px-6 py-10">
           <h3 className="font-title text-2xl font-bold mb-4">Contáctanos</h3>
-          <p className="opacity-80 mb-6">
+        <p className="opacity-80 mb-6">
             ¡Estamos listos para asesorarte! Escríbenos por WhatsApp o visita
             nuestras redes.
           </p>

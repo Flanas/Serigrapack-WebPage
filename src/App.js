@@ -1,16 +1,26 @@
 // src/App.js
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import AppRoutes from "./routes";
 import { CATEGORIES } from "./data/categories";
 import { WHATSAPP_NUMBER } from "./data/config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "./hooks/useCart";
 import "./App.css";
 
 export default function App() {
+  // basename makes GH Pages routing happy, while doing nothing locally.
+  return (
+    <Router basename={process.env.PUBLIC_URL || "/"}>
+      <AppInner />
+    </Router>
+  );
+}
+
+function AppInner() {
   const [active, setActive] = useState(CATEGORIES[0].id);
   const [navOpen, setNavOpen] = useState(false);
+
   const {
     cart,
     cartDirty,
@@ -21,10 +31,18 @@ export default function App() {
     clearDirty,
   } = useCart();
 
+  const location = useLocation();
+
+  // Close the mobile category menu when navigating away from /catalog
+  useEffect(() => {
+    if (!location.pathname.startsWith("/catalog") && navOpen) {
+      setNavOpen(false);
+    }
+  }, [location.pathname, navOpen]);
+
   const sendWhatsApp = () => {
     if (!cart.length) return;
 
-    // Build rich line descriptions supporting new line-item fields
     const lines = cart.map((it) => {
       const parts = [
         `- ${it.name}`,
@@ -60,7 +78,7 @@ export default function App() {
   };
 
   return (
-    <Router>
+    <>
       <Header
         cartCount={cart.length}
         cartDirty={cartDirty}
@@ -95,6 +113,6 @@ export default function App() {
       <footer className="max-w-6xl mx-auto px-6 pb-10 text-center text-sm opacity-70">
         © {new Date().getFullYear()} Serigrapack — Hecho con ❤️
       </footer>
-    </Router>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 // src/pages/CartPage.jsx
 import { Link } from "react-router-dom";
 import CartIcon from "../components/icons/CartIcon";
+import { asset } from "../utils/asset";
 
 function toMoney(n) {
   if (typeof n !== "number" || Number.isNaN(n)) return null;
@@ -48,9 +49,10 @@ export default function CartPage({ cart, removeFromCart, sendWhatsApp }) {
                 >
                   <div className="h-14 w-14 bg-white border border-black/5 rounded-lg grid place-items-center overflow-hidden">
                     <img
-                      src={item.image}
+                      src={asset(item.image)}
                       alt={item.name}
                       className="max-h-full max-w-full object-contain"
+                      loading="lazy"
                     />
                   </div>
 
@@ -77,7 +79,7 @@ export default function CartPage({ cart, removeFromCart, sendWhatsApp }) {
                           </div>
                         </>
                       ) : (
-                        // Legacy fallback: show original display price string if no structured pricing
+                        // Fallback: show original display price string if no structured pricing
                         item.price && <div className="text-brandBrown font-bold">{item.price}</div>
                       )}
                     </div>
