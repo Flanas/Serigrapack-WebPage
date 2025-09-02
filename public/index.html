@@ -2,7 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/serigrapack.ico" type="image/x-icon" />
+
+    <!-- Favicon (cache-busted & fallbacks) -->
+    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/serigrapack.ico?v=4" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico?v=4" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#fcf5eb" />
     <meta
@@ -42,7 +46,6 @@
         font-display: swap;
       }
 
-      /* Global defaults (works alongside Tailwind classes) */
       html, body { height: 100%; }
       body {
         font-family: 'Axiforma', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
