@@ -22,3 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 *.exe
+
+# ignore accidental binaries
+public/images/logo/*.exe

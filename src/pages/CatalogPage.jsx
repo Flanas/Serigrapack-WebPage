@@ -1,5 +1,5 @@
 // src/pages/CatalogPage.jsx
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { CATEGORIES } from "../data/categories";
 import { PRODUCTS } from "../data/products";
 import { toTitle } from "../utils/strings";
@@ -14,6 +14,16 @@ export default function CatalogPage({
   setActive,
   loadingIds,
 }) {
+  // Lock body scroll when the mobile menu is open
+  useEffect(() => {
+    if (!navOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [navOpen]);
+
   const visibleProducts = useMemo(
     () => PRODUCTS.filter((p) => p.category === active),
     [active]
@@ -48,37 +58,57 @@ export default function CatalogPage({
         </ul>
       </nav>
 
-      {/* Mobile collapsible nav */}
+      {/* Mobile overlay nav (fixed, opens anywhere) */}
       {navOpen && (
-        <nav
-          id="mobile-nav"
-          className="md:hidden border-t border-white/10"
-          style={{ backgroundColor: "#101820" }}
-        >
-          <ul className="px-6 py-3 space-y-2 text-white">
-            {CATEGORIES.map((cat) => {
-              const isActive = cat.id === active;
-              return (
-                <li key={cat.id}>
-                  <button
-                    onClick={() => {
-                      setActive(cat.id);
-                      setNavOpen(false);
-                    }}
-                    className={
-                      "w-full text-left py-2 border-b transition-colors normal-case " +
-                      (isActive
-                        ? "border-brandGreen text-white"
-                        : "border-white/10 text-white/90 hover:text-white")
-                    }
-                  >
-                    {toTitle(cat.name)}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <div id="mobile-nav" className="fixed inset-0 z-40 md:hidden">
+          {/* Backdrop */}
+          <button
+            aria-label="Cerrar menú"
+            onClick={() => setNavOpen(false)}
+            className="absolute inset-0 bg-black/40"
+          />
+          {/* Sheet */}
+          <nav
+            className="absolute top-0 left-0 right-0 max-h-[80vh] overflow-auto
+                       rounded-b-2xl border-b border-white/10 shadow-lg"
+            style={{ backgroundColor: "#101820" }}
+          >
+            <ul className="px-6 py-4 space-y-1 text-white text-sm">
+              <li className="pb-2 text-white/70 text-xs tracking-wide">
+                Elige una categoría
+              </li>
+              {CATEGORIES.map((cat) => {
+                const isActive = cat.id === active;
+                return (
+                  <li key={cat.id}>
+                    <button
+                      onClick={() => {
+                        setActive(cat.id);
+                        setNavOpen(false);
+                      }}
+                      className={
+                        "w-full text-left py-2 px-2 rounded-lg transition-colors " +
+                        (isActive
+                          ? "bg-brandGreen/20 text-white"
+                          : "text-white/90 hover:bg-white/10 hover:text-white")
+                      }
+                    >
+                      {toTitle(cat.name)}
+                    </button>
+                  </li>
+                );
+              })}
+              <li className="pt-2">
+                <button
+                  onClick={() => setNavOpen(false)}
+                  className="w-full py-2 px-2 rounded-lg bg-white/10 hover:bg.white/20 text-white/90"
+                >
+                  Cerrar
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       )}
 
       {/* Product grid */}
@@ -116,7 +146,7 @@ export default function CatalogPage({
                     {product.name}
                   </h2>
 
-                  {/* Optional description (since price now lives in PriceSelector) */}
+                  {/* Optional description */}
                   {product.description ? (
                     <p className="text-sm text-brandText/70 mt-1">
                       {product.description}
@@ -128,16 +158,14 @@ export default function CatalogPage({
                       productId={product.id}
                       addToCartLabel="Agregar con esta opción"
                       onSelect={(sel) => {
-                        // Build a line item for the cart; keep original id for loading state
                         const lineItem = {
                           ...product,
                           name: `${product.name} — ${sel.label}`,
-                          // Keep a human price string if available (cart also keeps numeric totals)
                           price:
                             sel?.price != null
                               ? `$${Number(sel.price).toFixed(2)}`
                               : undefined,
-                          selection: sel, // keep full selection for CartPage
+                          selection: sel,
                         };
                         addToCart(lineItem);
                       }}

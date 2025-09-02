@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/serigrapack.ico" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#fcf5eb" />
     <meta
@@ -14,51 +14,46 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
     <!-- Preload fonts (served from public/fonts) -->
-    <link rel="preload" href="/fonts/axiforma.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/just-lovely.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="%PUBLIC_URL%/fonts/axiforma.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="%PUBLIC_URL%/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="%PUBLIC_URL%/fonts/just-lovely.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Local font-face declarations -->
     <style>
       @font-face {
         font-family: 'Axiforma';
-        src: url('/fonts/axiforma.woff2') format('woff2');
+        src: url('%PUBLIC_URL%/fonts/axiforma.woff2') format('woff2');
         font-weight: 400;
         font-style: normal;
         font-display: swap;
       }
       @font-face {
         font-family: 'Montserrat';
-        src: url('/fonts/montserrat.woff2') format('woff2');
+        src: url('%PUBLIC_URL%/fonts/montserrat.woff2') format('woff2');
         font-weight: 400;
         font-style: normal;
         font-display: swap;
       }
       @font-face {
         font-family: 'Just Lovely';
-        src: url('/fonts/just-lovely.woff2') format('woff2');
+        src: url('%PUBLIC_URL%/fonts/just-lovely.woff2') format('woff2');
         font-weight: 400;
         font-style: normal;
         font-display: swap;
       }
 
       /* Global defaults (works alongside Tailwind classes) */
-      html, body {
-        height: 100%;
-      }
+      html, body { height: 100%; }
       body {
         font-family: 'Axiforma', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
         background: #fcf5eb; /* brandBg */
-        color: #2e2d2b;       /* brandText */
+        color: #2e2d2b;      /* brandText */
         margin: 0;
       }
       h1, h2, h3, h4, h5, h6 {
         font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       }
-      /* Optional utility for ad/scripting text */
-      .font-ad {
-        font-family: 'Just Lovely', cursive;
-      }
+      .font-ad { font-family: 'Just Lovely', cursive; }
     </style>
 
     <title>Serigrapack — Catálogo</title>
